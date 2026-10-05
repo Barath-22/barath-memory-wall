@@ -1,47 +1,46 @@
 # Barath's Memory Wall
 
-A static, GitHub Pages-ready farewell website.
-
 ## Files
+- `index.html` — page structure. Usually you do not need to edit this.
+- `styles.css` — design, responsive layout and animations.
+- `script.js` — card rendering, filters, search, animations and form behaviour.
+- `data.js` — **the file you edit for colleagues and memories.**
+- `images/` — add colleague photos here.
+- `fonts/` — place your two Likewize font files here locally:
+  - `Likewize-Regular.otf`
+  - `Likewize-Bold.otf`
 
-- `index.html` — complete website
-- `images/` — put colleague photos here
-- `.nojekyll` — tells GitHub Pages to serve the site as-is
-
-## Customize
-
-Open `index.html` and edit the `people` array near the bottom.
-
-Example:
+## Add a colleague
+Open `data.js`, copy an existing colleague block, paste it before the closing `];`, and edit:
 
 ```js
 {
-  name: "Arun Kumar",
-  role: "BI Analyst",
+  name: "Colleague Name",
+  role: "A short line about them",
   category: "Team",
-  photo: "images/arun.jpg",
-  title: "The Debugger",
-  memory: "Your short memory...",
-  story: "Your longer personal memory...",
-  year: "2024"
-}
+  photo: "images/colleague-name.jpg",
+  memory: `Your memory can be multiple sentences.`
+},
 ```
 
-Also change `YOUR_EMAIL@example.com` in `sendMemory()` if you want the "Leave a Memory" button to open your email client.
+Categories are automatic. If you add `category: "Manager"`, a Manager filter appears on the page.
+
+If there is no photo, use:
+```js
+photo: ""
+```
+The page will show initials instead.
+
+## Set the farewell email
+In `data.js`:
+```js
+const SITE_CONFIG = {
+  farewellEmail: "your-email@example.com"
+};
+```
 
 ## GitHub Pages
+Commit these files to the root of your repository. In GitHub:
+Settings → Pages → Build and deployment → Deploy from a branch → `main` → `/ (root)` → Save.
 
-1. Create a personal GitHub account.
-2. Create a public repository named `barath-memory-wall`.
-3. Upload all files in this folder.
-4. Go to **Settings → Pages**.
-5. Under **Build and deployment**, select **Deploy from a branch**.
-6. Select **main** and **/(root)**.
-7. Save.
-8. GitHub will provide your live Pages URL.
-
-Keep this repository under your personal account, not your employer's account, so the site remains independent after you leave the organization.
-
-## Important
-
-Do not put confidential company information, credentials, internal links, customer data, or proprietary screenshots into a public repository. Ask colleagues before publishing their identifiable photos or personal information.
+Your existing project URL should then update after GitHub Pages finishes deploying.

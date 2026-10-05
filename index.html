@@ -2,272 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#3200BE">
-  <meta name="description" content="Barath's Memory Wall — celebrating the people, moments and memories from 2022 to 2026.">
+  <meta name="description" content="Barath's Memory Wall — celebrating the people and memories from 2022 to 2026.">
   <title>Barath's Memory Wall | 2022–2026</title>
-  <style>
-    :root{
-      --blue:#3200BE;
-      --pink:#FF96FF;
-      --blush:#F5D2FA;
-      --frost:#C8FAFA;
-      --white:#FFFFFF;
-      --ink:#22008B;
-      --text:#251f32;
-      --muted:#686274;
-      --line:#ded8e8;
-      --soft:#f8f6fb;
-      --shadow:0 18px 50px rgba(50,0,190,.12);
-      --radius:24px;
-      --max:1180px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;background:var(--white);color:var(--text);
-      font-family:Arial,Helvetica,sans-serif;line-height:1.55;overflow-x:hidden
-    }
-    button,input,textarea{font:inherit}
-    a{color:inherit}
-    .container{width:min(calc(100% - 36px),var(--max));margin:auto}
-    .nav{
-      position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
-      backdrop-filter:blur(14px);border-bottom:1px solid rgba(50,0,190,.09)
-    }
-    .nav-inner{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .wordmark{font-size:2rem;font-weight:700;letter-spacing:-.07em;color:var(--blue);text-decoration:none}
-    .wordmark .dot{color:var(--pink)}
-    .nav-links{display:flex;align-items:center;gap:24px}
-    .nav-links a{text-decoration:none;color:var(--blue);font-size:.9rem;font-weight:700}
-    .nav-links a:hover{text-decoration:underline;text-decoration-color:var(--pink);text-decoration-thickness:3px;text-underline-offset:5px}
-    .hero{
-      position:relative;min-height:calc(100svh - 74px);display:grid;align-items:center;
-      background:linear-gradient(120deg,var(--blush),#ffc7fb 48%,var(--pink));overflow:hidden
-    }
-    .hero:after{
-      content:"";position:absolute;width:520px;height:520px;border-radius:50%;
-      right:-170px;bottom:-230px;background:var(--frost);opacity:.62
-    }
-    .pattern{position:absolute;inset:0;opacity:.08;pointer-events:none;
-      background-image:
-       radial-gradient(circle at 25px 25px, var(--blue) 2px, transparent 2px),
-       radial-gradient(circle at 75px 75px, var(--blue) 2px, transparent 2px);
-      background-size:100px 100px
-    }
-    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center;padding:78px 0}
-    .kicker{display:inline-flex;align-items:center;gap:9px;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.13em;font-size:.75rem}
-    .kicker:before{content:"";width:28px;height:3px;background:var(--blue)}
-    h1,h2,h3,p{margin-top:0}
-    .hero h1{font-size:clamp(4rem,9vw,8.2rem);line-height:.83;letter-spacing:-.075em;color:var(--blue);margin:18px 0 28px}
-    .hero h1 span{display:block}
-    .hero-copy{max-width:650px;font-size:1.12rem;color:#351d65}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-    .btn{border:0;border-radius:999px;padding:13px 19px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-    .btn-primary{background:var(--blue);color:#fff}
-    .btn-primary:hover{box-shadow:0 8px 24px rgba(50,0,190,.25);transform:translateY(-1px)}
-    .btn-secondary{background:#fff;color:var(--blue);border:1px solid rgba(50,0,190,.14)}
-    .hero-card{background:#fff;border-radius:34px;padding:28px;box-shadow:0 28px 70px rgba(50,0,190,.17);transform:rotate(2deg)}
-    .hero-card .year{color:var(--pink);font-size:4.5rem;font-weight:700;letter-spacing:-.08em;line-height:1}
-    .hero-card h3{font-size:1.65rem;color:var(--blue);margin:15px 0 8px}
-    .hero-card p{color:var(--muted);margin-bottom:0}
-    section{padding:105px 0}
-    .soft{background:var(--soft)}
-    .blue-section{background:var(--blue);color:#fff}
-    .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:38px}
-    .section-head .copy{max-width:680px}
-    .eyebrow{color:var(--pink);text-transform:uppercase;letter-spacing:.13em;font-size:.73rem;font-weight:700}
-    .on-white .eyebrow{color:var(--blue)}
-    .title{font-size:clamp(2.4rem,5vw,4.5rem);line-height:.95;letter-spacing:-.055em;margin:8px 0 14px;color:var(--blue)}
-    .blue-section .title{color:#fff}
-    .subtitle{color:var(--muted);max-width:680px}
-    .blue-section .subtitle{color:#e7defe}
-    .intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px}
-    .statement{background:var(--blue);color:#fff;border-radius:var(--radius);padding:42px}
-    .statement .big{font-size:clamp(2rem,4vw,3.5rem);line-height:1.02;letter-spacing:-.045em;font-weight:700}
-    .statement .big span{color:var(--pink)}
-    .statement p{color:#e9e3ff;margin-bottom:0}
-    .note{background:var(--frost);border-radius:var(--radius);padding:42px;color:#17395c}
-    .note h3{font-size:1.5rem;color:var(--blue)}
-    .tools{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-    .search{border:1px solid var(--line);border-radius:999px;padding:12px 17px;min-width:250px;outline:none}
-    .search:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(50,0,190,.08)}
-    .filter{border:1px solid var(--line);background:#fff;color:var(--blue);border-radius:999px;padding:11px 15px;font-weight:700;cursor:pointer}
-    .filter.active,.filter:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .memory-card{height:405px;perspective:1200px;cursor:pointer;outline:none}
-    .memory-card[hidden]{display:none}
-    .card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.75,.2,1)}
-    .memory-card.flipped .card-inner{transform:rotateY(180deg)}
-    .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
-    .front{padding:24px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(145deg,var(--blush),var(--pink));color:var(--blue)}
-    .front.alt{background:linear-gradient(145deg,var(--frost),#e9ffff)}
-    .portrait{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .photo-overlay{position:absolute;inset:0;background:linear-gradient(transparent 34%,rgba(50,0,190,.18) 55%,rgba(50,0,190,.94))}
-    .initials{position:absolute;inset:0;display:grid;place-items:center;font-size:7rem;font-weight:700;letter-spacing:-.08em;color:rgba(50,0,190,.14)}
-    .front-content{position:relative;z-index:2}
-    .has-photo .front-content{color:#fff}
-    .tag{display:inline-block;border:1px solid currentColor;border-radius:999px;padding:5px 9px;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:10px}
-    .front h3{font-size:2rem;line-height:1;margin-bottom:6px;letter-spacing:-.04em}
-    .role{font-size:.88rem;opacity:.83}
-    .flip-hint{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:.78rem;font-weight:700}
-    .flip-circle{display:grid;place-items:center;width:31px;height:31px;border:1px solid currentColor;border-radius:50%}
-    .back{transform:rotateY(180deg);background:#fff;padding:28px;display:flex;flex-direction:column;border-top:8px solid var(--pink)}
-    .back-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--blue)}
-    .back h3{font-size:1.65rem;color:var(--blue);margin:10px 0 14px}
-    .memory{color:var(--muted);font-size:.93rem;line-height:1.7;overflow:auto;padding-right:5px}
-    .signoff{margin-top:auto;padding-top:16px;color:var(--blue);font-weight:700}
-    .empty{display:none;grid-column:1/-1;text-align:center;border:1px dashed var(--line);border-radius:20px;padding:30px;color:var(--muted)}
-    .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:46px}
-    .milestone{background:#fff;border-radius:20px;padding:24px;color:var(--text);min-height:205px}
-    .milestone .num{font-size:2.7rem;color:var(--pink);font-weight:700;letter-spacing:-.07em}
-    .milestone h3{color:var(--blue);margin:6px 0}
-    .milestone p{color:var(--muted);font-size:.88rem;margin-bottom:0}
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:38px}
-    .stat{border:1px solid var(--line);border-radius:20px;padding:25px;background:#fff;min-height:180px}
-    .stat strong{display:block;color:var(--blue);font-size:3rem;letter-spacing:-.07em;line-height:1;margin:18px 0 8px}
-    .stat span{color:var(--muted);font-size:.88rem}
-    .farewell{background:linear-gradient(115deg,var(--blue) 0 58%,var(--pink) 58%);color:#fff}
-    .farewell-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:center}
-    .farewell h2{font-size:clamp(3rem,7vw,6.5rem);line-height:.87;letter-spacing:-.07em;margin:10px 0 25px}
-    .farewell p{max-width:660px;color:#eee9ff;font-size:1.05rem}
-    .farewell-badge{background:#fff;color:var(--blue);border-radius:32px;padding:38px;box-shadow:var(--shadow)}
-    .farewell-badge .date{font-size:3.2rem;font-weight:700;letter-spacing:-.07em;line-height:1}
-    .farewell-badge p{color:var(--muted);margin:12px 0 0}
-    .leave{display:grid;grid-template-columns:.8fr 1.2fr;gap:45px;align-items:start}
-    .form{border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:var(--shadow)}
-    .field{display:grid;gap:7px;margin-bottom:16px}
-    label{font-size:.8rem;font-weight:700;color:var(--blue)}
-    input,textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:13px 14px;outline:none;background:#fff}
-    textarea{min-height:125px;resize:vertical}
-    input:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(50,0,190,.08)}
-    footer{padding:32px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
-    .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
-    .reveal{opacity:0;transform:translateY(22px);transition:.7s ease}
-    .reveal.visible{opacity:1;transform:none}
-    @media(max-width:900px){
-      .nav-links a:not(:last-child){display:none}
-      .hero-grid,.intro,.farewell-grid,.leave{grid-template-columns:1fr}
-      .hero-card{max-width:520px;transform:none}
-      .cards{grid-template-columns:repeat(2,1fr)}
-      .timeline{grid-template-columns:repeat(2,1fr)}
-      .stats{grid-template-columns:repeat(2,1fr)}
-      .section-head{align-items:start;flex-direction:column}
-      .tools{justify-content:flex-start}
-    }
-    @media(max-width:590px){
-      .container{width:min(calc(100% - 24px),var(--max))}
-      .nav-inner{height:66px}.wordmark{font-size:1.7rem}
-      .hero{min-height:auto}.hero-grid{padding:72px 0}.hero h1{font-size:4.5rem}
-      section{padding:76px 0}
-      .cards,.timeline,.stats{grid-template-columns:1fr}
-      .memory-card{height:390px}
-      .search{min-width:100%;width:100%}
-      .tools{width:100%}
-      .farewell{background:var(--blue)}
-      .farewell-badge{border:6px solid var(--pink)}
-      .footer-inner{flex-direction:column;align-items:flex-start}
-    }
-    @media(prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}
-    }
-
-    /* ===== Enhanced motion + responsiveness ===== */
-    .hero-grid > *{animation:heroRise .85s cubic-bezier(.2,.75,.2,1) both}
-    .hero-grid > :nth-child(2){animation-delay:.13s}
-    @keyframes heroRise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-
-    .hero-card{animation:heroFloat 5.5s ease-in-out infinite}
-    @keyframes heroFloat{0%,100%{transform:rotate(2deg) translateY(0)}50%{transform:rotate(-1deg) translateY(-12px)}}
-
-    .pattern{animation:patternDrift 22s linear infinite}
-    @keyframes patternDrift{to{background-position:100px 100px}}
-
-    .wordmark .dot{display:inline-block;animation:dotPulse 2.8s ease-in-out infinite}
-    @keyframes dotPulse{50%{transform:scale(1.55);opacity:.65}}
-
-    .btn,.filter,.memory-card,.stat,.milestone{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease}
-    .btn:active,.filter:active{transform:scale(.97)}
-    .milestone:hover,.stat:hover{transform:translateY(-7px);box-shadow:0 18px 42px rgba(50,0,190,.12)}
-
-    .memory-card:hover{transform:translateY(-7px)}
-    .memory-card:hover .face{box-shadow:0 25px 60px rgba(50,0,190,.18)}
-    .memory-card .flip-circle{transition:transform .45s ease,background .25s ease}
-    .memory-card:hover .flip-circle{transform:rotate(120deg)}
-    .memory-card.flipped .flip-circle{transform:rotate(180deg)}
-
-    .card-enter{animation:cardIn .62s cubic-bezier(.2,.75,.2,1) both}
-    @keyframes cardIn{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-
-    .farewell-badge{animation:badgeFloat 4.8s ease-in-out infinite}
-    @keyframes badgeFloat{50%{transform:translateY(-9px)}}
-
-    .scroll-progress{position:fixed;z-index:100;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--blue),var(--pink),var(--frost));pointer-events:none}
-
-    .mobile-menu{display:none;border:0;background:var(--blue);color:#fff;border-radius:999px;width:42px;height:42px;cursor:pointer;font-size:1.2rem}
-    .nav-links.open{display:flex}
-
-    @media(max-width:1050px){
-      .hero-grid{gap:40px}
-      .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .timeline{grid-template-columns:repeat(3,minmax(0,1fr))}
-      .timeline .milestone:last-child{grid-column:auto}
-    }
-    @media(max-width:760px){
-      .mobile-menu{display:grid;place-items:center}
-      .nav-links{
-        display:none;position:absolute;top:66px;left:12px;right:12px;
-        padding:12px;background:#fff;border:1px solid var(--line);border-radius:18px;
-        box-shadow:var(--shadow);flex-direction:column;align-items:stretch;gap:2px
-      }
-      .nav-links.open{display:flex}
-      .nav-links a,.nav-links a:not(:last-child){display:block;padding:12px;border-radius:12px}
-      .nav-links a:hover{background:var(--blush);text-decoration:none}
-      .hero-grid{grid-template-columns:1fr;padding:58px 0}
-      .hero h1{font-size:clamp(3.7rem,17vw,6.2rem)}
-      .hero-copy{font-size:1rem}
-      .hero-card{width:100%;animation:none}
-      .intro,.farewell-grid,.leave{grid-template-columns:1fr}
-      .statement,.note{padding:30px}
-      .section-head{flex-direction:column;align-items:flex-start}
-      .tools{width:100%;justify-content:flex-start}
-      .search{width:100%;min-width:0}
-      .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-      .memory-card{height:370px}
-      .timeline{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-    }
-    @media(max-width:520px){
-      .container{width:min(calc(100% - 22px),var(--max))}
-      .hero h1{font-size:clamp(3.35rem,18vw,5.1rem)}
-      .hero-actions{display:grid;grid-template-columns:1fr}
-      .hero-actions .btn{justify-content:center}
-      .hero-card{padding:23px;border-radius:25px}
-      .hero-card .year{font-size:3.5rem}
-      section{padding:68px 0}
-      .title{font-size:clamp(2.35rem,12vw,3.4rem)}
-      .cards,.timeline,.stats{grid-template-columns:1fr}
-      .memory-card{height:min(420px,112vw)}
-      .front h3{font-size:1.8rem}
-      .filter{flex:1 1 auto}
-      .farewell h2{font-size:clamp(3rem,16vw,4.8rem)}
-      .farewell-badge{animation:none}
-      .form{padding:21px}
-    }
-    @media(max-width:360px){
-      .hero h1{font-size:3.15rem}
-      .wordmark{font-size:1.5rem}
-      .memory-card{height:390px}
-      .statement,.note,.back{padding:22px}
-    }
-
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-  <nav class="nav">
+
+  <nav class="nav" aria-label="Primary navigation">
     <div class="container nav-inner">
-      <a class="wordmark" href="#top" aria-label="Barath memory wall home">barath<span class="dot">.</span></a>
+      <a class="wordmark" href="#top" aria-label="Barath memory wall home">barath<span>.</span></a>
       <button class="mobile-menu" id="menuButton" aria-label="Open navigation" aria-expanded="false">☰</button>
       <div class="nav-links" id="navLinks">
         <a href="#memories">Memory Wall</a>
@@ -280,56 +28,61 @@
   <main id="top">
     <header class="hero">
       <div class="pattern"></div>
+      <div class="blob blob-one"></div><div class="blob blob-two"></div>
       <div class="container hero-grid">
-        <div>
+        <div class="hero-copy-wrap">
           <div class="kicker">A farewell, built from memories</div>
           <h1>One chapter.<span>So many people.</span></h1>
-          <p class="hero-copy">Four years are difficult to fit into one goodbye. So this is my little corner of the internet for the people, moments, conversations and memories that made the journey worth remembering.</p>
+          <p class="hero-copy">Four years are difficult to fit into one goodbye. This is my little corner of the internet for the people, moments, conversations and memories that made the journey worth remembering.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#memories">Meet the people ↘</a>
+            <a class="btn btn-primary" href="#memories">Meet the people ↓</a>
             <a class="btn btn-secondary" href="#journey">See the journey</a>
           </div>
         </div>
-        <aside class="hero-card" aria-label="Farewell date">
-          <div class="year">2022→26</div>
-          <h3>Barath's Memory Wall</h3>
+        <aside class="hero-card">
+          <div class="hero-year">2022→26</div>
+          <h2>Barath's Memory Wall</h2>
           <p>Built with gratitude, questionable jokes, too many meetings and some genuinely unforgettable people.</p>
         </aside>
       </div>
+      <a class="scroll-cue" href="#intro" aria-label="Scroll to introduction"><span>Scroll</span><i></i></a>
     </header>
 
-    <section>
+    <section id="intro">
       <div class="container intro reveal">
         <div class="statement">
-          <div class="eyebrow">Before we begin</div>
+          <div class="eyebrow light">Before we begin</div>
           <p class="big">Work gave me projects.<br><span>People gave me stories.</span></p>
           <p>This page is for the second part.</p>
         </div>
         <div class="note">
-          <h3>How the wall works</h3>
-          <p>Every card represents someone who became part of this chapter. Click or tap a card to flip it around and read the memory behind it. Search by name, or use the filters to move through the people who made the journey what it was.</p>
+          <h2>How the wall works</h2>
+          <p>Every card represents someone who became part of this chapter. Click or tap a card to flip it around and read the memory behind it. Search by name or use a category to move through the people who made the journey what it was.</p>
         </div>
       </div>
     </section>
 
     <section id="memories" class="soft">
       <div class="container">
-        <div class="section-head on-white reveal">
+        <div class="section-head reveal">
           <div class="copy">
             <div class="eyebrow">The Memory Wall</div>
             <h2 class="title">The people behind the memories.</h2>
-            <p class="subtitle">Some made the hard days easier. Some made the normal days funnier. Some did both. Flip a card to see what I’ll remember.</p>
+            <p class="subtitle">Some made hard days easier. Some made normal days funnier. Some did both. Flip a card to see what I'll remember.</p>
           </div>
-          <div class="tools">
-            <input id="search" class="search" type="search" placeholder="Search a colleague…" aria-label="Search colleagues">
-            <button class="filter active" data-filter="all">All</button>
-            <button class="filter" data-filter="team">Team</button>
-            <button class="filter" data-filter="friend">Friends</button>
-            <button class="filter" data-filter="mentor">Mentors</button>
-          </div>
+          <div class="count-card"><strong id="peopleCount">0</strong><span>memories & counting</span></div>
         </div>
+
+        <div class="toolbar reveal">
+          <label class="search-wrap">
+            <span aria-hidden="true">⌕</span>
+            <input id="search" type="search" placeholder="Search a colleague…" aria-label="Search colleagues">
+          </label>
+          <div class="filters" id="filters" aria-label="Memory categories"></div>
+        </div>
+
         <div id="cards" class="cards" aria-live="polite"></div>
-        <div id="empty" class="empty">No memories found for that search.</div>
+        <div id="empty" class="empty">No memories found. Try another name or category.</div>
       </div>
     </section>
 
@@ -337,276 +90,55 @@
       <div class="container">
         <div class="section-head reveal">
           <div class="copy">
-            <div class="eyebrow">2022 → 2026</div>
-            <h2 class="title">A journey measured in more than years.</h2>
-            <p class="subtitle">The roles changed, the work evolved and the calendar kept moving. The people are what made each phase memorable.</p>
+            <div class="eyebrow light">2022 → 2026</div>
+            <h2 class="title white">A journey measured in more than years.</h2>
+            <p class="subtitle pale">The roles changed, the work evolved and the calendar kept moving. The people are what made each phase memorable.</p>
           </div>
         </div>
         <div class="timeline reveal">
-          <article class="milestone"><div class="num">22</div><h3>The beginning</h3><p>New place. New faces. Absolutely no idea which conversations would become lifelong memories.</p></article>
-          <article class="milestone"><div class="num">23</div><h3>Finding rhythm</h3><p>The names became familiar, the work became real and colleagues slowly became friends.</p></article>
-          <article class="milestone"><div class="num">24</div><h3>Growing together</h3><p>More ownership, more lessons and more stories that never made it into meeting minutes.</p></article>
-          <article class="milestone"><div class="num">25</div><h3>The good stuff</h3><p>Challenges, wins, coffee breaks, calls, celebrations and the everyday moments in between.</p></article>
-          <article class="milestone"><div class="num">26</div><h3>One last page</h3><p>Not an ending to the people — just the end of this particular chapter.</p></article>
+          <article><b>22</b><h3>The beginning</h3><p>New place. New faces. No idea which conversations would become lifelong memories.</p></article>
+          <article><b>23</b><h3>Finding rhythm</h3><p>The names became familiar, the work became real and colleagues slowly became friends.</p></article>
+          <article><b>24</b><h3>Growing together</h3><p>More ownership, more lessons and more stories that never made it into meeting minutes.</p></article>
+          <article><b>25</b><h3>The good stuff</h3><p>Challenges, wins, calls, celebrations and the everyday moments in between.</p></article>
+          <article><b>26</b><h3>One last page</h3><p>Not an ending to the people — just the end of this particular chapter.</p></article>
         </div>
       </div>
     </section>
 
     <section>
       <div class="container">
-        <div class="section-head on-white reveal">
-          <div class="copy">
-            <div class="eyebrow">BI: Barath Intelligence</div>
-            <h2 class="title">The unofficial dashboard.</h2>
-            <p class="subtitle">Not audited. Definitely biased. Still more meaningful than most KPIs.</p>
-          </div>
+        <div class="section-head reveal">
+          <div class="copy"><div class="eyebrow">BI: Barath Intelligence</div><h2 class="title">The unofficial dashboard.</h2><p class="subtitle">Not audited. Definitely biased. Still more meaningful than most KPIs.</p></div>
         </div>
         <div class="stats reveal">
-          <article class="stat"><div>☕</div><strong>∞</strong><span>Cups of coffee / tea that somehow became meetings.</span></article>
-          <article class="stat"><div>💬</div><strong>1000+</strong><span>Chats that started with work and ended somewhere completely different.</span></article>
-          <article class="stat"><div>🤝</div><strong>Many</strong><span>People who made work feel less like just work.</span></article>
-          <article class="stat"><div>💜</div><strong>1</strong><span>Chapter I’ll always be glad I got to live.</span></article>
+          <article><span>☕</span><strong>∞</strong><p>Cups that somehow became meetings.</p></article>
+          <article><span>💬</span><strong>1000+</strong><p>Chats that started with work and ended elsewhere.</p></article>
+          <article><span>🤝</span><strong id="statPeople">0</strong><p>People represented on this memory wall.</p></article>
+          <article><span>💜</span><strong>1</strong><p>Chapter I'll always be glad I got to live.</p></article>
         </div>
       </div>
     </section>
 
     <section class="farewell">
       <div class="container farewell-grid reveal">
-        <div>
-          <div class="eyebrow">To everyone on this wall</div>
-          <h2>Thank you for being part of my story.</h2>
-          <p>For the help, the laughs, the honest feedback, the random conversations, the support and all the small moments that never make it onto a résumé — thank you. I’m leaving with more than experience. I’m leaving with memories.</p>
-        </div>
-        <div class="farewell-badge">
-          <div class="date">09.10.26</div>
-          <h3>Not goodbye. Just see you elsewhere.</h3>
-          <p>— Barath</p>
-        </div>
+        <div><div class="eyebrow light">To everyone on this wall</div><h2>Thank you for being part of my story.</h2><p>For the help, laughs, honest feedback, random conversations, support and all the small moments that never make it onto a résumé — thank you. I'm leaving with more than experience. I'm leaving with memories.</p></div>
+        <div class="farewell-badge"><div class="date">09.10.26</div><h3>Not goodbye. Just see you elsewhere.</h3><p>— Barath</p></div>
       </div>
     </section>
 
     <section id="leave">
       <div class="container leave reveal">
-        <div class="on-white">
-          <div class="eyebrow">Your turn</div>
-          <h2 class="title">Leave Barath a memory.</h2>
-          <p class="subtitle">A moment I forgot, an inside joke, a piece of advice, or simply a goodbye. This form opens your email app with the message prepared.</p>
-        </div>
+        <div><div class="eyebrow">Your turn</div><h2 class="title">Leave Barath a memory.</h2><p class="subtitle">A moment I forgot, an inside joke, advice, or simply a goodbye. This opens your email app with the message prepared.</p></div>
         <form id="memoryForm" class="form">
-          <div class="field"><label for="fromName">Your name</label><input id="fromName" required placeholder="Name"></div>
-          <div class="field"><label for="message">Your memory / message</label><textarea id="message" required placeholder="Write something Barath should remember…"></textarea></div>
+          <label>Your name<input id="fromName" required placeholder="Name"></label>
+          <label>Your memory / message<textarea id="message" required placeholder="Write something Barath should remember…"></textarea></label>
           <button class="btn btn-primary" type="submit">Prepare message →</button>
-          <p style="font-size:.76rem;color:var(--muted);margin:14px 0 0">Before publishing, replace <strong>YOUR_EMAIL@example.com</strong> in the script with Barath's preferred email address.</p>
+          <small>Set Barath's email once in <strong>data.js</strong>.</small>
         </form>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-inner">
-      <strong class="wordmark" style="font-size:1.45rem">barath<span class="dot">.</span></strong>
-      <span>2022–2026 · Made for the people who made the journey memorable.</span>
-    </div>
-  </footer>
-
-  <script>
-    /*
-      ============================================================
-      EDIT COLLEAGUES HERE
-      ============================================================
-      photo:
-        - Put images in a folder called "images"
-        - Example: photo: "images/alex.jpg"
-        - Leave photo: "" to use the initials-based branded card.
-      category: "team", "friend", or "mentor"
-    */
-    const people = [
-      {
-        name: "Alex",
-        role: "The teammate who always had my back",
-        category: "team",
-        photo: "",
-        memory: "Replace this with your real memory with Alex. Write it like you would actually say it to them — a specific moment, an inside joke, something they taught you, or the reason you will remember working together."
-      },
-      {
-        name: "Priya",
-        role: "Friend, problem-solver & professional mood-lifter",
-        category: "friend",
-        photo: "",
-        memory: "Replace this with your memory with Priya. Specific stories feel much more personal than generic farewell messages, so mention the moment that instantly comes to mind when you think of her."
-      },
-      {
-        name: "Rahul",
-        role: "The calm voice during chaotic days",
-        category: "mentor",
-        photo: "",
-        memory: "Replace this with your memory with Rahul. You can mention advice, support, a difficult situation you solved together, or something small that stayed with you."
-      },
-      {
-        name: "Meera",
-        role: "Made ordinary workdays much less ordinary",
-        category: "friend",
-        photo: "",
-        memory: "Replace this with your memory with Meera. This side of the card can hold a fairly detailed note, so don't be afraid to make it personal."
-      },
-      {
-        name: "Karthik",
-        role: "Teammate, collaborator & deadline survivor",
-        category: "team",
-        photo: "",
-        memory: "Replace this with your memory with Karthik — perhaps a project, a late call, a win, a running joke or the thing you appreciated most about working together."
-      },
-      {
-        name: "Ananya",
-        role: "One of the people who made the journey better",
-        category: "team",
-        photo: "",
-        memory: "Replace this with your memory with Ananya. End it with something you genuinely want them to take away from your farewell."
-      }
-    ];
-
-    const cards = document.getElementById("cards");
-    const empty = document.getElementById("empty");
-    const search = document.getElementById("search");
-    const filters = [...document.querySelectorAll(".filter")];
-    let activeFilter = "all";
-
-    function initials(name){
-      return name.trim().split(/\s+/).slice(0,2).map(x => x[0]).join("").toUpperCase();
-    }
-
-    function escapeHTML(value){
-      return String(value).replace(/[&<>"']/g, c => ({
-        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-      })[c]);
-    }
-
-    function render(){
-      const term = search.value.trim().toLowerCase();
-      const visible = people.filter(p => {
-        const categoryMatch = activeFilter === "all" || p.category === activeFilter;
-        const textMatch = `${p.name} ${p.role} ${p.memory}`.toLowerCase().includes(term);
-        return categoryMatch && textMatch;
-      });
-
-      cards.innerHTML = visible.map((p,i) => {
-        const photo = p.photo
-          ? `<img class="portrait" src="${escapeHTML(p.photo)}" alt="${escapeHTML(p.name)}"><div class="photo-overlay"></div>`
-          : `<div class="initials">${escapeHTML(initials(p.name))}</div>`;
-        return `
-          <article class="memory-card card-enter ${p.photo ? "has-photo" : ""}" style="animation-delay:${Math.min(i * 70, 420)}ms" tabindex="0"
-                   role="button" aria-label="Flip ${escapeHTML(p.name)}'s memory card" aria-pressed="false">
-            <div class="card-inner">
-              <div class="face front ${i % 2 ? "alt" : ""}">
-                ${photo}
-                <div class="front-content">
-                  <span class="tag">${escapeHTML(p.category)}</span>
-                  <h3>${escapeHTML(p.name)}</h3>
-                  <div class="role">${escapeHTML(p.role)}</div>
-                  <div class="flip-hint"><span>Flip for our memory</span><span class="flip-circle">↻</span></div>
-                </div>
-              </div>
-              <div class="face back">
-                <div class="back-label">A memory worth keeping</div>
-                <h3>${escapeHTML(p.name)}</h3>
-                <p class="memory">${escapeHTML(p.memory)}</p>
-                <div class="signoff">— Barath.</div>
-              </div>
-            </div>
-          </article>`;
-      }).join("");
-
-      empty.style.display = visible.length ? "none" : "block";
-      bindCards();
-      observeReveals();
-    }
-
-    function bindCards(){
-      document.querySelectorAll(".memory-card").forEach(card => {
-        const flip = () => {
-          card.classList.toggle("flipped");
-          card.setAttribute("aria-pressed", card.classList.contains("flipped") ? "true" : "false");
-        };
-        card.addEventListener("click", flip);
-        card.addEventListener("keydown", e => {
-          if(e.key === "Enter" || e.key === " "){ e.preventDefault(); flip(); }
-        });
-      });
-    }
-
-    filters.forEach(btn => btn.addEventListener("click", () => {
-      filters.forEach(x => x.classList.remove("active"));
-      btn.classList.add("active");
-      activeFilter = btn.dataset.filter;
-      render();
-    }));
-    search.addEventListener("input", render);
-
-    let observer;
-    function observeReveals(){
-      if(observer) observer.disconnect();
-      observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {threshold:.08});
-      document.querySelectorAll(".reveal:not(.visible)").forEach(el => observer.observe(el));
-    }
-
-    document.getElementById("memoryForm").addEventListener("submit", e => {
-      e.preventDefault();
-      const name = document.getElementById("fromName").value.trim();
-      const msg = document.getElementById("message").value.trim();
-      const email = "YOUR_EMAIL@example.com"; // <-- REPLACE THIS
-      const subject = encodeURIComponent(`A farewell memory from ${name}`);
-      const body = encodeURIComponent(`Hi Barath,\n\n${msg}\n\n— ${name}`);
-      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-    });
-
-
-    // Scroll progress
-    const progress = document.getElementById("scrollProgress");
-    const updateProgress = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
-    };
-    window.addEventListener("scroll", updateProgress, {passive:true});
-    window.addEventListener("resize", updateProgress);
-    updateProgress();
-
-    // Compact mobile navigation
-    const menuButton = document.getElementById("menuButton");
-    const navLinks = document.getElementById("navLinks");
-    menuButton.addEventListener("click", () => {
-      const open = navLinks.classList.toggle("open");
-      menuButton.setAttribute("aria-expanded", String(open));
-      menuButton.textContent = open ? "×" : "☰";
-    });
-    navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
-      navLinks.classList.remove("open");
-      menuButton.setAttribute("aria-expanded", "false");
-      menuButton.textContent = "☰";
-    }));
-
-    // Gentle pointer parallax for the hero card on capable desktop devices.
-    const heroCard = document.querySelector(".hero-card");
-    if (window.matchMedia("(hover:hover) and (pointer:fine)").matches) {
-      document.querySelector(".hero").addEventListener("pointermove", e => {
-        const x = (e.clientX / window.innerWidth - .5) * 8;
-        const y = (e.clientY / window.innerHeight - .5) * -8;
-        heroCard.style.transform = `perspective(900px) rotateY(${x}deg) rotateX(${y}deg) translateY(-4px)`;
-      });
-      document.querySelector(".hero").addEventListener("pointerleave", () => {
-        heroCard.style.transform = "";
-      });
-    }
-
-
-    render();
-    observeReveals();
-  </script>
+  <footer><div class="container footer-inner"><strong class="wordmark small">barath<span>.</span></strong><span>2022–2026 · Made for the people who made the journey memorable.</span></div></footer>
 </body>
 </html>
